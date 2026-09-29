@@ -210,6 +210,10 @@ export const jaJP = {
     signIn: "サインイン",
     connectErrorHint: "サーバーに接続できません。APIが起動しているか確認してください。",
   },
+  pwa: {
+    offlineTitle: "オフラインです",
+    offlineDesc: "Open Notebook はサーバーへの接続が必要です。再接続してからもう一度お試しください。",
+  },
   navigation: {
     collect: "収集",
     process: "処理",

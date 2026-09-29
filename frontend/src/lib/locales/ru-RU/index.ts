@@ -210,6 +210,10 @@ export const ruRU = {
     signIn: "Войти",
     connectErrorHint: "Не удаётся подключиться к серверу. Проверьте, запущен ли API.",
   },
+  pwa: {
+    offlineTitle: "Нет подключения к сети",
+    offlineDesc: "Open Notebook требуется подключение к вашему серверу. Восстановите подключение и повторите попытку.",
+  },
   navigation: {
     collect: "Собрать",
     process: "Обработать",

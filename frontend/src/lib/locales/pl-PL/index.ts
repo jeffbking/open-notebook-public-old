@@ -210,6 +210,10 @@ export const plPL = {
     signIn: "Zaloguj się",
     connectErrorHint: "Nie można połączyć się z serwerem. Sprawdź, czy API jest uruchomione.",
   },
+  pwa: {
+    offlineTitle: "Jesteś offline",
+    offlineDesc: "Open Notebook wymaga połączenia z Twoim serwerem. Połącz się ponownie i spróbuj jeszcze raz.",
+  },
   navigation: {
     collect: "Zbieraj",
     process: "Przetwarzaj",

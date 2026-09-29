@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSerwist } from "@serwist/turbopack";
 
 // Next.js dev server blocks cross-origin requests (including the HMR
 // websocket) from any host not in this list, to guard against DNS
@@ -54,4 +55,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSerwist(nextConfig);

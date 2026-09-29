@@ -478,7 +478,7 @@ export function GeneratePodcastDialog({ open, onOpenChange }: GeneratePodcastDia
         resetState()
       }
     }}>
-      <DialogContent className="w-[80vw] max-w-[1080px] max-h-[90vh] overflow-hidden">
+      <DialogContent className="sm:w-[80vw] sm:max-w-[1080px] max-h-[90dvh] overflow-y-auto md:overflow-hidden">
         <DialogHeader>
           <DialogTitle>{t('podcasts.generateEpisode')}</DialogTitle>
           <DialogDescription>
@@ -526,7 +526,7 @@ export function GeneratePodcastDialog({ open, onOpenChange }: GeneratePodcastDia
                       onValueChange={setEpisodeProfileId}
                       disabled={episodeProfiles.length === 0}
                     >
-                      <SelectTrigger id="episode_profile">
+                      <SelectTrigger id="episode_profile" className="w-full">
                         <SelectValue placeholder={t('podcasts.episodeProfilePlaceholder')} />
                       </SelectTrigger>
                       <SelectContent>

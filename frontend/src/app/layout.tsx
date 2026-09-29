@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { SerwistProvider } from "@serwist/turbopack/react";
 import {
   Bricolage_Grotesque,
   Instrument_Sans,
@@ -31,8 +32,34 @@ const splineSansMono = Spline_Sans_Mono({
 });
 
 export const metadata: Metadata = {
+  applicationName: "Open Notebook",
   title: "Open Notebook",
   description: "Privacy-focused research and knowledge management",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Notebook",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  // Android Chrome: shrink the layout when the keyboard opens so chat composers stay visible.
+  interactiveWidget: "resizes-content",
+  // Match the sidebar/top-bar surface so the browser chrome blends in.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eeeee9" },
+    { media: "(prefers-color-scheme: dark)", color: "#121316" },
+  ],
 };
 
 export default function RootLayout({
@@ -48,6 +75,12 @@ export default function RootLayout({
       <body
         className={`${instrumentSans.variable} ${bricolageGrotesque.variable} ${splineSansMono.variable} font-sans`}
       >
+        {/* reloadOnOnline off: a flaky mobile connection must not wipe a half-typed chat. */}
+        <SerwistProvider
+          swUrl="/serwist/sw.js"
+          disable={process.env.NODE_ENV === "development"}
+          reloadOnOnline={false}
+        >
         <ErrorBoundary>
           <ThemeProvider>
             <QueryProvider>
@@ -60,6 +93,7 @@ export default function RootLayout({
             </QueryProvider>
           </ThemeProvider>
         </ErrorBoundary>
+        </SerwistProvider>
       </body>
     </html>
   );

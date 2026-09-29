@@ -210,6 +210,10 @@ export const zhTW = {
     signIn: "登入",
     connectErrorHint: "無法連線至伺服器。請檢查 API 是否正在運行。",
   },
+  pwa: {
+    offlineTitle: "你已離線",
+    offlineDesc: "Open Notebook 需要連線到你的伺服器。請重新連線後再試一次。",
+  },
   navigation: {
     collect: "採集",
     process: "處理",

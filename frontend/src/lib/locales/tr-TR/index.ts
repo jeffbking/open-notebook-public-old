@@ -210,6 +210,10 @@ export const trTR = {
     signIn: "Giriş Yap",
     connectErrorHint: "Sunucuya bağlanılamıyor. API'nin çalışıp çalışmadığını kontrol edin.",
   },
+  pwa: {
+    offlineTitle: "Çevrimdışısınız",
+    offlineDesc: "Open Notebook'un sunucunuza bağlanması gerekiyor. Yeniden bağlanıp tekrar deneyin.",
+  },
   navigation: {
     collect: "Topla",
     process: "İşle",

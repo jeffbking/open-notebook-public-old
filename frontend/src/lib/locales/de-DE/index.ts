@@ -213,6 +213,10 @@ export const deDE = {
     signIn: "Anmelden",
     connectErrorHint: "Keine Verbindung zum Server möglich. Bitte prüfe, ob die API läuft.",
   },
+  pwa: {
+    offlineTitle: "Du bist offline",
+    offlineDesc: "Open Notebook benötigt eine Verbindung zu deinem Server. Stelle die Verbindung wieder her und versuche es erneut.",
+  },
   navigation: {
     collect: "Sammeln",
     process: "Verarbeiten",

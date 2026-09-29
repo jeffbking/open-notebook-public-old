@@ -37,7 +37,7 @@ export function ModelSelector({
     <div className="space-y-2">
       {label && <Label htmlFor={selectId}>{label}</Label>}
       <Select name={name} value={value} onValueChange={onChange} disabled={disabled || isLoading}>
-        <SelectTrigger id={selectId}>
+        <SelectTrigger id={selectId} className="w-full">
           <SelectValue placeholder={placeholder || t('settings.embeddingOptionPlaceholder')} />
         </SelectTrigger>
         <SelectContent>

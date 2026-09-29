@@ -51,19 +51,31 @@ const DialogContent = ({
   className,
   children,
   showCloseButton = true,
+  onOpenAutoFocus,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
 }) => {
   const { t } = useTranslation()
+  // On touch devices, auto-focusing the first input pops the on-screen
+  // keyboard over half the form; focus the dialog itself instead.
+  const handleOpenAutoFocus = (event: Event) => {
+    onOpenAutoFocus?.(event)
+    if (event.defaultPrevented) return
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      event.preventDefault()
+      ;(event.currentTarget as HTMLElement | null)?.focus({ preventScroll: true })
+    }
+  }
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
         aria-describedby={undefined}
+        onOpenAutoFocus={handleOpenAutoFocus}
         className={cn(
-            "bg-card data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:pointer-events-none fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-5 rounded-xl border p-6 shadow-overlay duration-200 sm:max-w-[calc(100%-2rem)] overflow-hidden",
+            "bg-card data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:pointer-events-none fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-5 rounded-xl border shadow-overlay duration-200 sm:max-w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain p-6 outline-none",
           className
         )}
         {...props}

@@ -86,12 +86,21 @@ function LogoPebbles({ className }: { className?: string }) {
 
 type CreateTarget = 'source' | 'notebook' | 'podcast'
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  /** Mobile drawer: always expanded, fills its container, no collapse toggle. */
+  mobile?: boolean
+  /** Called after a navigation or create action (used to close the drawer). */
+  onNavigate?: () => void
+}
+
+export function AppSidebar({ mobile = false, onNavigate }: AppSidebarProps = {}) {
   const { t } = useTranslation()
   const navigation = getNavigation(t)
   const pathname = usePathname()
   const { logout } = useAuth()
-  const { isCollapsed, toggleCollapse } = useSidebarStore()
+  const sidebarStore = useSidebarStore()
+  const isCollapsed = mobile ? false : sidebarStore.isCollapsed
+  const toggleCollapse = sidebarStore.toggleCollapse
   const { openSourceDialog, openNotebookDialog, openPodcastDialog } = useCreateDialogs()
 
   // The active item is the longest href that prefixes the current path.
@@ -113,6 +122,7 @@ export function AppSidebar() {
 
   const handleCreateSelection = (target: CreateTarget) => {
     setCreateMenuOpen(false)
+    onNavigate?.()
 
     if (target === 'source') {
       openSourceDialog()
@@ -127,8 +137,9 @@ export function AppSidebar() {
     <TooltipProvider delayDuration={0}>
       <div
         className={cn(
-          'app-sidebar flex h-full flex-col bg-sidebar border-sidebar-border border-r transition-all duration-300',
-          isCollapsed ? 'w-16' : 'w-64'
+          'app-sidebar flex h-full flex-col bg-sidebar border-sidebar-border transition-all duration-300',
+          mobile ? 'w-full' : 'border-r',
+          !mobile && (isCollapsed ? 'w-16' : 'w-64')
         )}
       >
         <div
@@ -157,22 +168,24 @@ export function AppSidebar() {
                   {t('common.appName')}
                 </span>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleCollapse}
-                className="text-sidebar-foreground hover:bg-sidebar-accent"
-                data-testid="sidebar-toggle"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
+              {!mobile && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleCollapse}
+                  className="text-sidebar-foreground hover:bg-sidebar-accent"
+                  data-testid="sidebar-toggle"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+              )}
             </>
           )}
         </div>
 
         <nav
           className={cn(
-            'flex-1 space-y-1 py-4',
+            'flex-1 min-h-0 overflow-y-auto space-y-1 py-4',
             isCollapsed ? 'px-2' : 'px-3'
           )}
         >
@@ -296,7 +309,7 @@ export function AppSidebar() {
                   }
 
                   return (
-                    <Link key={item.name} href={item.href}>
+                    <Link key={item.name} href={item.href} onClick={onNavigate}>
                       {button}
                     </Link>
                   )
@@ -312,8 +325,8 @@ export function AppSidebar() {
             isCollapsed && 'px-2'
           )}
         >
-          {/* Command Palette hint */}
-          {!isCollapsed && (
+          {/* Command Palette hint (keyboard-only, so hidden in the mobile drawer) */}
+          {!isCollapsed && !mobile && (
             <div className="px-3 py-1.5 text-xs text-sidebar-foreground/60">
               <div className="flex items-center justify-between">
                  <span className="flex items-center gap-1.5">
@@ -330,6 +343,28 @@ export function AppSidebar() {
             </div>
           )}
 
+          {mobile ? (
+            // Drawer: one compact row so the nav keeps the vertical space.
+            <div className="flex items-center gap-2">
+              {/* iconOnly toggles are w-full; pin them to icon width here */}
+              <div className="w-9 flex-shrink-0">
+                <ThemeToggle iconOnly />
+              </div>
+              <div className="w-9 flex-shrink-0">
+                <LanguageToggle iconOnly />
+              </div>
+              <Button
+                variant="outline"
+                className="flex-1 justify-start gap-2 sidebar-menu-item"
+                onClick={logout}
+                aria-label={t('common.signOut')}
+              >
+                <LogOut className="h-4 w-4" />
+                {t('common.signOut')}
+              </Button>
+            </div>
+          ) : (
+          <>
            <div
             className={cn(
               'flex flex-col gap-2',
@@ -387,6 +422,8 @@ export function AppSidebar() {
               <LogOut className="h-4 w-4" />
               {t('common.signOut')}
             </Button>
+          )}
+          </>
           )}
         </div>
       </div>

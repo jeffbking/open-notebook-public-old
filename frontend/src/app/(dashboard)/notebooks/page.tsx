@@ -54,16 +54,16 @@ export default function NotebooksPage() {
   return (
     <AppShell>
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="p-4 sm:p-6 space-y-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <h1 className="font-display text-2xl font-bold tracking-tight">{t('notebooks.title')}</h1>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
               <RefreshCw className="h-4 w-4" />
             </Button>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <div className="flex items-center rounded-md border p-0.5">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex flex-shrink-0 items-center rounded-md border p-0.5">
               <Button
                 variant={viewMode === 'tile' ? 'secondary' : 'ghost'}
                 size="sm"
@@ -93,11 +93,15 @@ export default function NotebooksPage() {
               placeholder={t('notebooks.searchPlaceholder')}
               autoComplete="off"
               aria-label={t('common.accessibility.searchNotebooks') || "Search notebooks"}
-              className="w-full sm:w-64"
+              className="min-w-0 flex-1 sm:w-64 sm:flex-none"
             />
-            <Button onClick={() => setCreateDialogOpen(true)}>
-              <Plus className="h-4 w-4 mr-2" />
-              {t('notebooks.newNotebook')}
+            <Button
+              onClick={() => setCreateDialogOpen(true)}
+              aria-label={t('notebooks.newNotebook')}
+              className="flex-shrink-0"
+            >
+              <Plus className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">{t('notebooks.newNotebook')}</span>
             </Button>
           </div>
         </div>

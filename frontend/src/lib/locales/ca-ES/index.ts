@@ -210,6 +210,10 @@ export const caES = {
     signIn: "Inicia la sessió",
     connectErrorHint: "No es pot connectar al servidor. Comprova si l'API s'està executant.",
   },
+  pwa: {
+    offlineTitle: "Estàs fora de línia",
+    offlineDesc: "Open Notebook necessita connexió amb el teu servidor. Torna a connectar-te i torna-ho a provar.",
+  },
   navigation: {
     collect: "Recull",
     process: "Processa",

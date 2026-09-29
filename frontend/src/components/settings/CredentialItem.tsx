@@ -79,8 +79,8 @@ export function CredentialItem({
   return (
     <>
       <div className="border rounded-lg p-3 space-y-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0 flex-wrap">
             <span className="font-medium truncate">{credential.name}</span>
             <div className="flex gap-1">
               {credential.modalities.map(mod => (
@@ -164,19 +164,19 @@ export function CredentialItem({
                     {getTypeIcon(type)}
                     {getTypeLabel(type)}
                   </Badge>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex min-w-0 flex-wrap gap-1">
                     {linkedModels.filter(m => m.type === type).map(model => {
                       const defaultSlot = defaultSlots[model.id]
                       return (
                         <Badge
                           key={model.id}
                           variant={defaultSlot ? 'default' : 'secondary'}
-                          className="font-mono text-[11px] gap-1 pr-0.5 group/model"
+                          className="font-mono text-[11px] gap-1 pr-0.5 group/model max-w-full whitespace-normal break-all"
                         >
                           {model.name}
                           {defaultSlot && <span className="ml-0.5 opacity-75">({defaultSlot})</span>}
                           <button
-                            className="ml-0.5 opacity-0 group-hover/model:opacity-60 hover:!opacity-100 transition-opacity"
+                            className="ml-0.5 opacity-0 group-hover/model:opacity-60 [@media(hover:none)]:opacity-60 hover:!opacity-100 transition-opacity"
                             onClick={() => testModel(model.id, model.name)}
                             disabled={isModelTestPending && testingModelId === model.id}
                             title={t('models.testModel')}
@@ -187,7 +187,7 @@ export function CredentialItem({
                             }
                           </button>
                           <button
-                            className="opacity-0 group-hover/model:opacity-60 hover:!opacity-100 hover:text-destructive transition-opacity"
+                            className="opacity-0 group-hover/model:opacity-60 [@media(hover:none)]:opacity-60 hover:!opacity-100 hover:text-destructive transition-opacity"
                             onClick={() => deleteModel.mutate(model.id)}
                             title={t('models.deleteModel')}
                           >

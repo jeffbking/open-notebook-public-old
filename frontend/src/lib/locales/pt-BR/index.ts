@@ -210,6 +210,10 @@ export const ptBR = {
     signIn: "Entrar",
     connectErrorHint: "Não foi possível conectar ao servidor. Verifique se a API está rodando.",
   },
+  pwa: {
+    offlineTitle: "Você está offline",
+    offlineDesc: "O Open Notebook precisa de conexão com o seu servidor. Reconecte-se e tente novamente.",
+  },
   navigation: {
     collect: "Coletar",
     process: "Processar",

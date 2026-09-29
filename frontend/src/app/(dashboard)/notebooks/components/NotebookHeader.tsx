@@ -50,10 +50,10 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
 
   return (
     <>
-      <div className="border-b pb-6">
+      <div className="border-b pb-4 sm:pb-6">
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 flex-1">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
               <InlineEdit
                 id="notebook-name"
                 name="notebook-name"
@@ -67,21 +67,22 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
                 <Badge variant="secondary">{t('notebooks.archived')}</Badge>
               )}
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-shrink-0 gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleArchiveToggle}
+                aria-label={notebook.archived ? t('notebooks.unarchive') : t('notebooks.archive')}
               >
                 {notebook.archived ? (
                   <>
-                    <ArchiveRestore className="h-4 w-4 mr-2" />
-                    {t('notebooks.unarchive')}
+                    <ArchiveRestore className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">{t('notebooks.unarchive')}</span>
                   </>
                 ) : (
                   <>
-                    <Archive className="h-4 w-4 mr-2" />
-                    {t('notebooks.archive')}
+                    <Archive className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">{t('notebooks.archive')}</span>
                   </>
                 )}
               </Button>
@@ -90,9 +91,10 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
                 size="sm"
                 onClick={() => setShowDeleteDialog(true)}
                 className="text-destructive hover:text-destructive"
+                aria-label={t('common.delete')}
               >
-                <Trash2 className="h-4 w-4 mr-2" />
-                {t('common.delete')}
+                <Trash2 className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">{t('common.delete')}</span>
               </Button>
             </div>
           </div>

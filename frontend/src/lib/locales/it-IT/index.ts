@@ -210,6 +210,10 @@ export const itIT = {
     signIn: "Accedi",
     connectErrorHint: "Impossibile connettersi al server. Verifica che l'API sia in esecuzione.",
   },
+  pwa: {
+    offlineTitle: "Sei offline",
+    offlineDesc: "Open Notebook ha bisogno di una connessione al tuo server. Riconnettiti e riprova.",
+  },
   navigation: {
     collect: "Raccogli",
     process: "Elabora",

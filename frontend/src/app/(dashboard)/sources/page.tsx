@@ -316,7 +316,7 @@ export default function SourcesPage() {
     }
 
     return (<>
-      <div className="flex flex-col h-full w-full max-w-none px-6 py-6">
+      <div className="flex flex-col h-full w-full max-w-none p-4 sm:p-6">
         <div className="mb-6 flex-shrink-0">
           <h1 className="font-display text-2xl font-bold tracking-tight">{t('sources.allSources')}</h1>
           <p className="mt-2 text-muted-foreground">
@@ -328,16 +328,18 @@ export default function SourcesPage() {
           <table
             ref={tableRef}
             tabIndex={0}
-            className="w-full min-w-[920px] outline-none table-fixed"
+            className="w-full lg:min-w-[920px] outline-none table-fixed"
           >
             <colgroup>
-              <col className="w-[120px]" />
+              {/* Hidden cols mirror the hidden th/td breakpoints below so the
+                  fixed layout keeps its widths on narrow screens. */}
+              <col className="w-[96px] sm:w-[120px]" />
               <col className="w-auto" />
-              <col className="w-[140px]" />
-              <col className="w-[140px]" />
-              <col className="w-[100px]" />
-              <col className="w-[100px]" />
-              <col className="w-[100px]" />
+              <col className="hidden sm:table-column w-[140px]" />
+              <col className="hidden sm:table-column w-[140px]" />
+              <col className="hidden md:table-column w-[100px]" />
+              <col className="hidden lg:table-column w-[100px]" />
+              <col className="w-[88px] sm:w-[100px]" />
             </colgroup>
             <thead className="sticky top-0 bg-background z-10">
               <tr className="border-b">

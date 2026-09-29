@@ -535,7 +535,7 @@ export function AddSourceDialog({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[700px] p-0">
-        <DialogHeader className="px-6 pt-6 pb-0">
+        <DialogHeader className="px-4 pt-6 pb-0 sm:px-6">
           <DialogTitle>{t('sources.addNew')}</DialogTitle>
           <DialogDescription>
             {t('sources.processDescription')}
@@ -585,7 +585,7 @@ export function AddSourceDialog({
           </WizardContainer>
 
           {/* Navigation */}
-          <div className="flex justify-between items-center px-6 py-4 border-t border-border">
+          <div className="flex justify-between items-center gap-2 px-4 py-4 sm:px-6 border-t border-border">
             <Button 
               type="button" 
               variant="outline" 

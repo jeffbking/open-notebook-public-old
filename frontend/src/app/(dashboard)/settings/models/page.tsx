@@ -88,7 +88,7 @@ export default function ApiKeysPage() {
   return (
     <AppShell>
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-6">
           {/* Header */}
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function ApiKeysPage() {
               <AlertDescription>{t('apiKeys.providersLoadFailedDescription')}</AlertDescription>
             </Alert>
           ) : (
-            <div className="grid gap-4">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
               {sortedProviders.map(provider => (
                 <ProviderSection
                   key={provider.name}

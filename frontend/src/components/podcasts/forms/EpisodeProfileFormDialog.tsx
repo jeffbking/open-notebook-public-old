@@ -250,7 +250,7 @@ export function EpisodeProfileFormDialog({
                 <div className="space-y-2">
                   <Label htmlFor="speaker_config">{t('podcasts.speakerProfile')} *</Label>
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger id="speaker_config">
+                    <SelectTrigger id="speaker_config" className="w-full">
                       <SelectValue placeholder={t('podcasts.selectSpeakerProfile')} />
                     </SelectTrigger>
                     <SelectContent title={t('podcasts.speakerProfile')}>
@@ -346,7 +346,7 @@ export function EpisodeProfileFormDialog({
                     value={field.value ?? ''}
                     onValueChange={(v) => field.onChange(v || null)}
                   >
-                    <SelectTrigger id="language">
+                    <SelectTrigger id="language" className="w-full">
                       <SelectValue placeholder={t('podcasts.languagePlaceholder')} />
                     </SelectTrigger>
                     <SelectContent title={t('podcasts.language')}>

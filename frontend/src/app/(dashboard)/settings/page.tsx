@@ -14,7 +14,7 @@ export default function SettingsPage() {
   return (
     <AppShell>
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <div className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
               <h1 className="font-display text-2xl font-bold tracking-tight">{t('navigation.settings')}</h1>

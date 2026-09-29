@@ -210,6 +210,10 @@ export const esES = {
     signIn: "Iniciar sesión",
     connectErrorHint: "No se puede conectar al servidor. Por favor, verifica si la API está funcionando.",
   },
+  pwa: {
+    offlineTitle: "Estás sin conexión",
+    offlineDesc: "Open Notebook necesita conexión con tu servidor. Vuelve a conectarte e inténtalo de nuevo.",
+  },
   navigation: {
     collect: "Recopilar",
     process: "Procesar",

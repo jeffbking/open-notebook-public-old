@@ -210,6 +210,10 @@ export const frFR = {
     signIn: "Se connecter",
     connectErrorHint: "Impossible de se connecter au serveur. Veuillez vérifier si l'API est lancée.",
   },
+  pwa: {
+    offlineTitle: "Vous êtes hors ligne",
+    offlineDesc: "Open Notebook a besoin d'une connexion à votre serveur. Reconnectez-vous et réessayez.",
+  },
   navigation: {
     collect: "Collecter",
     process: "Traiter",

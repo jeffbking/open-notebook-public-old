@@ -24,7 +24,10 @@ services:
     pull_policy: always
 
   open_notebook:
-    image: lfnovo/open_notebook:v1-latest
+    # Built from this fork (mobile UI + PWA changes) instead of pulling
+    # lfnovo/open_notebook:v1-latest. Redeploy: docker compose up -d --build open_notebook
+    build: .
+    image: open_notebook:local
     ports:
       - "127.0.0.1:8502:8502"  # Web UI
       - "127.0.0.1:5055:5055"  # REST API
@@ -61,7 +64,7 @@ services:
     depends_on:
       - surrealdb
     restart: always
-    pull_policy: always
+    pull_policy: build
 
 networks:
   default:

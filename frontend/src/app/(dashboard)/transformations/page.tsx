@@ -26,7 +26,7 @@ export default function TransformationsPage() {
   return (
     <AppShell>
       <div className="flex-1 overflow-y-auto">
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="font-display text-2xl font-bold tracking-tight">{t('transformations.title')}</h1>

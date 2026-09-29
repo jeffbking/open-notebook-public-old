@@ -51,7 +51,7 @@ export function ProviderSection({
   return (
     <Card className={hasCredentials ? 'border-l-2 border-l-fern' : undefined}>
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-3 flex-wrap">
             <CardTitle className={`text-lg capitalize ${hasCredentials ? '' : 'text-muted-foreground'}`}>{displayName}</CardTitle>
             <div className="flex items-center gap-1">

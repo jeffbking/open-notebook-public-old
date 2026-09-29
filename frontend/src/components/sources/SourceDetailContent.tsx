@@ -411,8 +411,8 @@ function SourceDetailContentInner({
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="pb-5 pr-10">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1 min-w-0">
             <InlineEdit
               value={source.title || ''}
               onSave={handleUpdateTitle}

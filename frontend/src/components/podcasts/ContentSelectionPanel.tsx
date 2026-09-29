@@ -103,7 +103,7 @@ export function ContentSelectionPanel({
             {t('podcasts.noNotebooksFoundInPodcasts')}
           </div>
         ) : (
-          <ScrollArea className="h-[60vh]">
+          <ScrollArea className="h-[45dvh] md:h-[60vh]">
             <Accordion
               type="multiple"
               value={expandedNotebooks}

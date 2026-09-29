@@ -208,6 +208,10 @@ export const enUS = {
     signIn: "Sign In",
     connectErrorHint: "Unable to connect to server. Please check if the API is running.",
   },
+  pwa: {
+    offlineTitle: "You're offline",
+    offlineDesc: "Open Notebook needs a connection to your server. Reconnect and try again.",
+  },
   navigation: {
     collect: "Collect",
     process: "Process",
@@ -793,7 +797,7 @@ export const enUS = {
     loadFailed: "Failed to load settings",
   },
   advanced: {
-    title: "AdvancedTools",
+    title: "Advanced Tools",
     desc: "Advanced tools and utilities for power users",
     systemInfo: "System Info",
     rebuildEmbeddings: "Rebuild Embeddings",

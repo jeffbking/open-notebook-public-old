@@ -210,6 +210,10 @@ export const zhCN = {
     signIn: "登录",
     connectErrorHint: "无法连接到服务器。请检查 API 是否正在运行。",
   },
+  pwa: {
+    offlineTitle: "你已离线",
+    offlineDesc: "Open Notebook 需要连接到你的服务器。请重新连接后重试。",
+  },
   navigation: {
     collect: "采集",
     process: "处理",

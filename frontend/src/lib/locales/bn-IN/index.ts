@@ -210,6 +210,10 @@ export const bnIN = {
     signIn: "সাইন ইন",
     connectErrorHint: "সার্ভারে সংযোগ করতে অক্ষম। API চালু আছে কিনা চেক করুন।",
   },
+  pwa: {
+    offlineTitle: "আপনি অফলাইনে আছেন",
+    offlineDesc: "Open Notebook-এর আপনার সার্ভারের সাথে সংযোগ প্রয়োজন। আবার সংযুক্ত হয়ে চেষ্টা করুন।",
+  },
   navigation: {
     collect: "সংগ্রহ",
     process: "প্রক্রিয়া",

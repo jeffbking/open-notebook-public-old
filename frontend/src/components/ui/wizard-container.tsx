@@ -23,7 +23,7 @@ function StepIndicator({ currentStep, steps, onStepClick }: {
   onStepClick?: (step: number) => void
 }) {
   return (
-    <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted">
+    <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 border-b border-border bg-muted">
       {steps.map((step, index) => {
         const isCompleted = currentStep > step.number
         const isCurrent = currentStep === step.number
@@ -47,7 +47,8 @@ function StepIndicator({ currentStep, steps, onStepClick }: {
               >
                 {isCompleted ? "✓" : step.number}
               </div>
-              <div className="ml-3 min-w-0">
+              {/* Phones show only the current step's title */}
+              <div className={cn('ml-3 min-w-0', !isCurrent && 'hidden sm:block')}>
                 <p className={cn(
                   'text-sm font-medium',
                   isCurrent ? 'text-foreground' : 'text-muted-foreground'
@@ -55,7 +56,7 @@ function StepIndicator({ currentStep, steps, onStepClick }: {
                   {step.title}
                 </p>
                 <p className={cn(
-                  'text-xs',
+                  'hidden sm:block text-xs',
                   isCurrent ? 'text-muted-foreground' : 'text-muted-foreground/80'
                 )}>
                   {step.description}
@@ -65,7 +66,7 @@ function StepIndicator({ currentStep, steps, onStepClick }: {
             {index < steps.length - 1 && (
               <div 
                 className={cn(
-                  'flex-1 border-t-2 mx-4 transition-colors',
+                  'flex-1 border-t-2 mx-2 sm:mx-4 transition-colors',
                   isCompleted ? 'border-primary' : 'border-border/60'
                 )} 
               />
@@ -85,7 +86,7 @@ export function WizardContainer({
   className
 }: WizardContainerProps) {
   return (
-    <div className={cn('flex flex-col h-[500px] min-w-0 overflow-hidden bg-card rounded-lg border border-border', className)}>
+    <div className={cn('flex flex-col h-[50dvh] sm:h-[500px] min-w-0 overflow-hidden bg-card rounded-lg border border-border', className)}>
       <StepIndicator
         currentStep={currentStep}
         steps={steps}
@@ -93,7 +94,7 @@ export function WizardContainer({
       />
 
       <div className="flex-1 min-w-0 overflow-hidden">
-        <div className="h-full min-w-0 overflow-y-auto px-6 py-4">
+        <div className="h-full min-w-0 overflow-y-auto px-4 py-4 sm:px-6">
           {children}
         </div>
       </div>
