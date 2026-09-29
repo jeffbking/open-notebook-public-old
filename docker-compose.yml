@@ -60,3 +60,10 @@ services:
       - surrealdb
     restart: always
     pull_policy: always
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.93.0.0/24
