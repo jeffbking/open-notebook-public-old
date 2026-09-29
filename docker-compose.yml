@@ -57,6 +57,7 @@ services:
       # - OPEN_NOTEBOOK_WORKER_MAX_TASKS=1
     volumes:
       - ./notebook_data:/app/data
+      - ./open_notebook/__init__.py:/app/open_notebook/__init__.py:ro
     depends_on:
       - surrealdb
     restart: always
