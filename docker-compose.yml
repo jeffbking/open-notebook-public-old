@@ -54,11 +54,13 @@ services:
       # - CRAWL4AI_API_URL=http://crawl4ai:11235  # use a remote Crawl4AI server instead (no local install)
       # - CRAWL4AI_API_TOKEN=${CRAWL4AI_API_TOKEN}  # bearer token for that server (required by Crawl4AI >= 0.9.0)
 
-      # Podcast TTS pacing (podcast-creator). Gemini TTS on this key is capped
-      # at 10 requests/minute per model, and the defaults (5 clips in parallel,
-      # 3 attempts, <=30s backoff) cannot outlast a one-minute window. Generate
-      # one clip at a time and retry 429s with backoff long enough to span it.
-      - TTS_BATCH_SIZE=1
+      # Podcast TTS pacing (podcast-creator). TTS is Breezeblue (ElevenLabs-
+      # compatible API): no per-minute cap, but the Free plan allows 3
+      # concurrent generations, so send 3 clips at a time and let the retries
+      # back off on 429 GENERATION_CONCURRENCY_EXCEEDED. (Gemini TTS on the
+      # Google key is capped at 10 requests/minute and 100/day - use
+      # TTS_BATCH_SIZE=1 if switching back.)
+      - TTS_BATCH_SIZE=3
       - PODCAST_RETRY_MAX_ATTEMPTS=6
       - PODCAST_RETRY_WAIT_MAX=60
 
