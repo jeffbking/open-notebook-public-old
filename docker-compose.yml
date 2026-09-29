@@ -54,6 +54,13 @@ services:
       # - CRAWL4AI_API_URL=http://crawl4ai:11235  # use a remote Crawl4AI server instead (no local install)
       # - CRAWL4AI_API_TOKEN=${CRAWL4AI_API_TOKEN}  # bearer token for that server (required by Crawl4AI >= 0.9.0)
 
+      # Public podcast feed, token-gated at /public/podcasts/<token>/ and
+      # exposed only through the path-scoped cloudflared tunnel below
+      # (notebook-podcasts.ezhost.ing). Token lives in .env.
+      - OPEN_NOTEBOOK_PODCAST_FEED_TOKEN=${OPEN_NOTEBOOK_PODCAST_FEED_TOKEN:-}
+      - OPEN_NOTEBOOK_PODCAST_FEED_ORIGIN=${OPEN_NOTEBOOK_PODCAST_FEED_ORIGIN:-https://notebook-podcasts.ezhost.ing}
+      - OPEN_NOTEBOOK_PODCAST_FEED_TITLE=${OPEN_NOTEBOOK_PODCAST_FEED_TITLE:-Open Notebook}
+
       # Podcast TTS pacing (podcast-creator). TTS is Breezeblue (ElevenLabs-
       # compatible API): no per-minute cap, but the Free plan allows 3
       # concurrent generations, so send 3 clips at a time and let the retries
@@ -75,6 +82,24 @@ services:
       - surrealdb
     restart: always
     pull_policy: build
+
+  # Cloudflare Tunnel "open-notebook-podcasts" (remotely managed). Its ingress
+  # forwards only notebook-podcasts.ezhost.ing/public/podcasts/ to the API on
+  # 127.0.0.1:5055; every other path is a 404 at Cloudflare's edge, so the UI
+  # and /api stay tailnet-only.
+  cloudflared:
+    image: cloudflare/cloudflared:2026.9.1
+    command: tunnel --no-autoupdate --protocol http2 run
+    environment:
+      - TUNNEL_TOKEN=${OPEN_NOTEBOOK_TUNNEL_TOKEN:?set OPEN_NOTEBOOK_TUNNEL_TOKEN in .env}
+    network_mode: host
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      - open_notebook
+    restart: always
 
 networks:
   default:

@@ -31,7 +31,7 @@ def _apply_esperanto_patches() -> None:
                 pass
             return _orig_parse(self, response_data)
 
-        GoogleSpeechToTextModel._parse_response = _patched_parse_response
+        GoogleSpeechToTextModel._parse_response = _patched_parse_response  # type: ignore[method-assign]
     except ImportError:
         pass
 

@@ -8,6 +8,8 @@ from starlette.types import ASGIApp
 
 from open_notebook.utils.encryption import get_secret_from_env
 
+PUBLIC_PODCAST_FEED_PREFIX = "/public/podcasts/"
+
 
 class PasswordAuthMiddleware(BaseHTTPMiddleware):
     """
@@ -39,6 +41,11 @@ class PasswordAuthMiddleware(BaseHTTPMiddleware):
 
         # Skip authentication for excluded paths
         if request.url.path in self.excluded_paths:
+            return await call_next(request)
+
+        # The public podcast feed is gated by its own feed token (podcast apps
+        # cannot send a bearer password), so it bypasses password auth.
+        if request.url.path.startswith(PUBLIC_PODCAST_FEED_PREFIX):
             return await call_next(request)
 
         # Skip authentication for CORS preflight requests (OPTIONS)

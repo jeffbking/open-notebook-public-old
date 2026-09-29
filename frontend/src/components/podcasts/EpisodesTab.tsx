@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { GeneratePodcastDialog } from '@/components/podcasts/GeneratePodcastDialog'
+import { PodcastFeedCard } from '@/components/podcasts/PodcastFeedCard'
 import { useTranslation } from '@/lib/hooks/use-translation'
 import type { TFunction } from 'i18next'
 
@@ -116,6 +117,8 @@ export function EpisodesTab() {
         <SummaryBadge label={t('podcasts.failedLabel')} value={statusCounts.failed} />
         <SummaryBadge label={t('podcasts.pendingLabel')} value={statusCounts.pending} />
       </div>
+
+      <PodcastFeedCard />
 
       {isError ? (
         <Alert variant="destructive">

@@ -7,6 +7,7 @@ import {
   Language,
   PodcastGenerationRequest,
   PodcastGenerationResponse,
+  PodcastFeedInfo,
 } from '@/lib/types/podcasts'
 
 export type EpisodeProfileInput = Omit<EpisodeProfile, 'id'>
@@ -31,6 +32,11 @@ export async function resolvePodcastAssetUrl(path?: string | null): Promise<stri
 }
 
 export const podcastsApi = {
+  getFeedInfo: async () => {
+    const response = await apiClient.get<PodcastFeedInfo>('/podcasts/feed-info')
+    return response.data
+  },
+
   listEpisodes: async () => {
     const response = await apiClient.get<PodcastEpisode[]>('/podcasts/episodes')
     return response.data

@@ -186,3 +186,8 @@ export function needsModelSetup(profile: EpisodeProfile | SpeakerProfile): boole
   const sp = profile as SpeakerProfile
   return !sp.voice_model
 }
+
+export interface PodcastFeedInfo {
+  enabled: boolean
+  feed_url: string | null
+}

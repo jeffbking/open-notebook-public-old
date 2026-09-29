@@ -16,6 +16,14 @@ import {
   speakerUsageMap,
 } from '@/lib/types/podcasts'
 
+export function usePodcastFeedInfo() {
+  return useQuery({
+    queryKey: QUERY_KEYS.podcastFeedInfo,
+    queryFn: podcastsApi.getFeedInfo,
+    staleTime: Infinity,
+  })
+}
+
 export function useLanguages() {
   return useQuery({
     queryKey: QUERY_KEYS.languages,
