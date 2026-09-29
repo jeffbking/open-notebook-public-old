@@ -254,16 +254,6 @@ class TestVersionUtilities:
         with pytest.raises(PackageNotFoundError):
             get_installed_version("this-package-does-not-exist-12345")
 
-    def test_get_version_from_github_invalid_url(self):
-        """Test GitHub version fetch with invalid URL."""
-        from open_notebook.utils.version_utils import get_version_from_github
-
-        with pytest.raises(ValueError, match="Not a GitHub URL"):
-            get_version_from_github("https://example.com/repo")
-
-        with pytest.raises(ValueError, match="Invalid GitHub repository URL"):
-            get_version_from_github("https://github.com/")
-
 
 # ============================================================================
 # TEST SUITE 4: Source Context Building

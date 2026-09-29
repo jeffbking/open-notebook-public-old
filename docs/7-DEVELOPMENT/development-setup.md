@@ -208,7 +208,7 @@ After setup, verify everything is working:
 | **Local Services** (`make start-all`) | Day-to-day development, fastest iteration | ⚡⚡⚡ Fast | Medium |
 | **Docker Compose** (`make dev`) | Testing containerized setup | ⚡⚡ Medium | High |
 | **Local Docker Build** (`make docker-build-local`) | Testing Dockerfile changes | ⚡ Slow | Very High |
-| **Multi-platform Build** (`make docker-push`) | Publishing releases (see [Release Process](../../.github/RELEASE_PROCESS.md)) | 🐌 Very Slow | Exact |
+| **Deploy** (`make deploy`) | Rebuild and restart the production container on this host (the fork publishes no images) | 🐢 Slow | Exact |
 
 Local services give hot reload, direct log access and easy debugging; Docker Compose (`examples/docker-compose-dev.yml` via `make dev`, `examples/docker-compose-full-local.yml` via `make full`) is closer to production. Use `make docker-build-local` before touching anything Docker-related in a PR.
 

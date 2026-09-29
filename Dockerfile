@@ -36,7 +36,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv using the official method
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.20 /uv /uvx /bin/
 
 WORKDIR /app
 
@@ -62,8 +62,8 @@ ENV TIKTOKEN_CACHE_DIR=/app/tiktoken-cache
 RUN mkdir -p /app/tiktoken-cache && \
     .venv/bin/python -c "import tiktoken; tiktoken.get_encoding('o200k_base')"
 
-# Stage 3: SurrealDB binary (pinned to v2 to match docker-compose.yml; used by the single target only)
-FROM surrealdb/surrealdb:v2 AS surreal-binary
+# Stage 3: SurrealDB binary (pinned to v2.7.0 to match docker-compose.yml; used by the single target only)
+FROM surrealdb/surrealdb:v2.7.0 AS surreal-binary
 
 # Stage 4: Shared runtime base (everything common to both variants)
 FROM python:3.12-slim-trixie AS runtime-base
@@ -79,7 +79,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv using the official method
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.20 /uv /uvx /bin/
 
 WORKDIR /app
 

@@ -37,7 +37,6 @@ from .token_utils import token_cost, token_count
 from .version_utils import (
     compare_versions,
     get_installed_version,
-    get_version_from_github,
 )
 
 __all__ = [
@@ -63,7 +62,6 @@ __all__ = [
     # Version utils
     "compare_versions",
     "get_installed_version",
-    "get_version_from_github",
     # Encryption utils
     "decrypt_value",
     "encrypt_value",

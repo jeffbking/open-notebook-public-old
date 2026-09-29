@@ -14,7 +14,7 @@ Developer documentation now lives in the development docs structure.
 - **New developer?** → [Quick Start](docs/7-DEVELOPMENT/quick-start.md)
 - **Want to contribute?** → [Contributing Guide](docs/7-DEVELOPMENT/contributing.md)
 - **Making a common change?** → [Change Playbooks](docs/7-DEVELOPMENT/change-playbooks.md)
-- **Publishing Docker images?** → [Release Process](.github/RELEASE_PROCESS.md)
+- **Deploying?** → `make deploy` on the host (this fork publishes no images; see README)
 - **Coding-agent rules?** → [AGENTS.md](AGENTS.md)
 
 ---

@@ -1,6 +1,8 @@
 services:
   surrealdb:
-    image: surrealdb/surrealdb:v2
+    # Pinned (no floating tag, no pull on up): database upgrades are a
+    # deliberate change here, with an export first.
+    image: surrealdb/surrealdb:v2.7.0
     # Credentials default to root:root for a zero-config local setup. Before
     # exposing this instance to a network, set SURREAL_USER / SURREAL_PASSWORD
     # in a .env file (see .env.example) — they are applied here and to the
@@ -21,11 +23,10 @@ services:
     environment:
       - SURREAL_EXPERIMENTAL_GRAPHQL=true
     restart: always
-    pull_policy: always
 
   open_notebook:
-    # Built from this fork (mobile UI + PWA changes) instead of pulling
-    # lfnovo/open_notebook:v1-latest. Redeploy: docker compose up -d --build open_notebook
+    # Built from this repo (personal hard fork; nothing is pulled from
+    # upstream). Redeploy: make deploy
     build: .
     image: open_notebook:local
     ports:
@@ -77,7 +78,6 @@ services:
       # - OPEN_NOTEBOOK_WORKER_MAX_TASKS=1
     volumes:
       - ./notebook_data:/app/data
-      - ./open_notebook/__init__.py:/app/open_notebook/__init__.py:ro
     depends_on:
       - surrealdb
     restart: always

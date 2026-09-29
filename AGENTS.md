@@ -2,6 +2,8 @@
 
 Open Notebook is an open-source, privacy-focused alternative to Google's Notebook LM: an AI-powered research assistant with multi-provider AI support, fully self-hostable.
 
+**This repository is a personal hard fork** (`jeffbking/open-notebook`) of `lfnovo/open-notebook`, run on one host for one user. Upstream is never merged, and nothing is published (no registry images, no releases, no PRs or Discussions upstream). `gh` defaults to this fork and there is no `upstream` remote; keep it that way. Deploy is `make deploy` (rebuilds the image from this checkout). Fork-specific changes and runbooks are in [README.md](README.md).
+
 This file holds the project-wide rules every coding session needs. Component rules: [open_notebook/AGENTS.md](open_notebook/AGENTS.md) (backend — also covers `api/`, `commands/`, `prompts/`) and [frontend/AGENTS.md](frontend/AGENTS.md). Knowledge lives in the docs (see [Where to look](#where-to-look)) — read it on demand instead of guessing.
 
 ## Stack, ports, startup order
@@ -22,7 +24,7 @@ Or all at once: `make start-all` (status: `make status`, stop: `make stop-all`).
 - Tests: `uv run pytest tests/`
 - Python lint/typecheck: `ruff check . --fix` · `uv run python -m mypy .`
 - Frontend (inside `frontend/`): `npm run lint` · `npm run test` · `npm run build`
-- Docker release: `make docker-release` (see `.github/RELEASE_PROCESS.md`)
+- Deploy (production, this host): `make deploy` = `docker compose up -d --build open_notebook`
 
 ## Hard rules
 
@@ -41,5 +43,5 @@ Or all at once: `make start-all` (status: `make status`, stop: `make stop-all`).
 | Code standards & testing | [docs/7-DEVELOPMENT/code-standards.md](docs/7-DEVELOPMENT/code-standards.md) · [testing.md](docs/7-DEVELOPMENT/testing.md) |
 | Product identity & current posture | [VISION.md](VISION.md) |
 | Decision log (ADRs/PDRs) | [docs/7-DEVELOPMENT/decisions/](docs/7-DEVELOPMENT/decisions/) |
-| Contribution process (Discussions → Issues → PRs) | [docs/7-DEVELOPMENT/contributing.md](docs/7-DEVELOPMENT/contributing.md) |
+| Contribution process | Not applicable: personal hard fork, commit straight to `main` (see README) |
 | User/operator docs (install, configure, troubleshoot) | [docs/](docs/index.md) |

@@ -1,6 +1,6 @@
 # ADR-005: Releases pass a risk-based confidence process, gated on the real image
 
-- **Status**: Accepted
+- **Status**: Superseded in this fork (personal hard fork: no releases; the release process, `RELEASE_PROCESS.md` and `scripts/release-test/` were removed). Kept for history.
 - **Date**: 2026-07 (established during the v1.11.0 release)
 - **Related**: [RELEASE_PROCESS.md](../../../.github/RELEASE_PROCESS.md), `scripts/release-test/`, [ADR-004](ADR-004-background-workers.md)
 
